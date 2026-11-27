@@ -85,7 +85,7 @@ public class AppBuilder {
 
     public AppBuilder addAddQuestionUseCase() {
         final AddQuestionOutputBoundary addQuestionOutputBoundary = new AddQuestionPresenter(addQuestionViewModel, viewManagerModel);
-        final AddQuestionInputBoundary addQuestionInteractor = new AddQuestionInteractor(new InMemoryDataAccessObject(), addQuestionOutputBoundary);
+        final AddQuestionInputBoundary addQuestionInteractor = new AddQuestionInteractor(dataAccessObject, addQuestionOutputBoundary);
 
         AddQuestionController addQuestionController = new AddQuestionController(addQuestionInteractor);
         addQuestionView.setAddQuestionController(addQuestionController);
