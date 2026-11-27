@@ -6,7 +6,7 @@ package interface_adapter.create_teams;
 public class CreateTeamState {
     private String team1Name = "";
     private String team2Name = "";
-    private String startGameError;
+    private String startGameError = "";
 
     public String getTeam1Name() {
         return team1Name;
