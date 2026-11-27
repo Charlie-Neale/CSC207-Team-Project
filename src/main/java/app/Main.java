@@ -8,6 +8,8 @@ public class Main {
         JFrame application = appBuilder
                 .addGameRunningView()
                 .addLoadQuestionUseCase()
+                .addAddQuestionView()
+                .addAddQuestionUseCase()
                 .build();
 
         application.setLocationRelativeTo(null);

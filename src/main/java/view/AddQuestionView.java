@@ -161,22 +161,4 @@ public class AddQuestionView extends JPanel implements AddQuestionViewModelListe
     public void setAddQuestionController(AddQuestionController controller) {
         this.addQuestionController = controller;
     }
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Family Feud - Add Question");
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setSize(1000, 600);
-
-        AddQuestionViewModel viewModel = new AddQuestionViewModel();
-        AddQuestionView view = new AddQuestionView(viewModel);
-
-        InMemoryDataAccessObject inMemoryDao = new InMemoryDataAccessObject();
-        AddQuestionPresenter presenter = new AddQuestionPresenter(viewModel, new ViewManagerModel());
-        AddQuestionInputBoundary interactor = new AddQuestionInteractor(inMemoryDao, presenter);
-        view.setAddQuestionController(new AddQuestionController(interactor));
-
-        frame.add(view);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-    }
 }

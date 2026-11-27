@@ -1,13 +1,21 @@
 package app;
 
 import data_access.DataAccessObject;
+import data_access.InMemoryDataAccessObject;
 import interface_adapter.ViewManagerModel;
+import interface_adapter.add_question.AddQuestionController;
+import interface_adapter.add_question.AddQuestionPresenter;
+import interface_adapter.add_question.AddQuestionViewModel;
 import interface_adapter.game_running.GameRunningViewModel;
 import interface_adapter.game_running.LoadQuestionController;
 import interface_adapter.game_running.LoadQuestionPresenter;
+import use_case.add_question.AddQuestionInputBoundary;
+import use_case.add_question.AddQuestionInteractor;
+import use_case.add_question.AddQuestionOutputBoundary;
 import use_case.load_question.LoadQuestionInputBoundary;
 import use_case.load_question.LoadQuestionInteractor;
 import use_case.load_question.LoadQuestionOutputBoundary;
+import view.AddQuestionView;
 import view.GameRunningView;
 import view.ViewManager;
 
@@ -26,6 +34,9 @@ public class AppBuilder {
     private GameRunningView gameRunningView;
     private GameRunningViewModel gameRunningViewModel;
 
+    private AddQuestionView addQuestionView;
+    private AddQuestionViewModel addQuestionViewModel;
+
     public AppBuilder() {
         cardPanel.setLayout(cardLayout);
     }
@@ -38,7 +49,14 @@ public class AppBuilder {
         return this;
     }
 
-    // ad your use case here >:)
+    public AppBuilder addAddQuestionView() {
+        addQuestionViewModel = new AddQuestionViewModel();
+        addQuestionView = new AddQuestionView(addQuestionViewModel);
+        cardPanel.add(addQuestionView, AddQuestionViewModel.VIEW_NAME);
+        return this;
+    }
+
+    // ad your use case here >:)z
     public AppBuilder addLoadQuestionUseCase() {
         final LoadQuestionOutputBoundary loadQuestionOutputBoundary = new LoadQuestionPresenter(viewManagerModel, gameRunningViewModel);
         final LoadQuestionInputBoundary loadQuestionInteractor = new LoadQuestionInteractor(dataAccessObject, loadQuestionOutputBoundary);
@@ -46,6 +64,15 @@ public class AppBuilder {
         LoadQuestionController loadQuestionController = new LoadQuestionController(loadQuestionInteractor);
         gameRunningView.setLoadQuestionController(loadQuestionController);
 
+        return this;
+    }
+
+    public AppBuilder addAddQuestionUseCase() {
+        final AddQuestionOutputBoundary addQuestionOutputBoundary = new AddQuestionPresenter(addQuestionViewModel, viewManagerModel);
+        final AddQuestionInputBoundary addQuestionInteractor = new AddQuestionInteractor(new InMemoryDataAccessObject(), addQuestionOutputBoundary);
+
+        AddQuestionController addQuestionController = new AddQuestionController(addQuestionInteractor);
+        addQuestionView.setAddQuestionController(addQuestionController);
         return this;
     }
 
