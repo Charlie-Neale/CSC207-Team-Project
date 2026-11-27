@@ -3,13 +3,14 @@ package data_access;
 import entity.Answer;
 import entity.Question;
 import entity.Team;
+import use_case.add_question.AddQuestionDataAccessInterface;
 import use_case.load_question.LoadQuestionDataAccessInterface;
 import use_case.start_game.StartGameDataAccessInterface;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataAccessObject implements LoadQuestionDataAccessInterface, StartGameDataAccessInterface {
+public class DataAccessObject implements LoadQuestionDataAccessInterface, StartGameDataAccessInterface, AddQuestionDataAccessInterface {
 
     // TEMPORARY IMPLEMENTATION FOR TESTING PURPOSES
     @Override
@@ -38,5 +39,16 @@ public class DataAccessObject implements LoadQuestionDataAccessInterface, StartG
     @Override
     public Team getTeam(String teamName){
         return new Team("TEMP.");
+    }
+
+    //TODO: Implement AddQuestion use case functions
+    @Override
+    public boolean questionExists(String questionText) {
+        return false;
+    }
+
+    @Override
+    public void saveQuestion(Question question) {
+
     }
 }
