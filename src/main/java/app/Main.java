@@ -8,6 +8,8 @@ public class Main {
         JFrame application = appBuilder
                 .addGameRunningView()
                 .addLoadQuestionUseCase()
+                .addGameSummaryView()
+                .addQuestionInputUseCase()
                 .addCreateTeamView()
                 .addStartGameUseCase()
                 .build();
