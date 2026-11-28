@@ -18,9 +18,15 @@ import interface_adapter.create_teams.StartGamePresenter;
 import interface_adapter.game_running.GameRunningViewModel;
 import interface_adapter.game_running.LoadQuestionController;
 import interface_adapter.game_running.LoadQuestionPresenter;
+import interface_adapter.main_menu.MainMenuSwitchController;
+import interface_adapter.main_menu.MainMenuSwitchPresenter;
+import interface_adapter.main_menu.MainMenuViewModel;
 import use_case.load_question.LoadQuestionInputBoundary;
 import use_case.load_question.LoadQuestionInteractor;
 import use_case.load_question.LoadQuestionOutputBoundary;
+import use_case.main_menu_switch.MainMenuSwitchInputBoundary;
+import use_case.main_menu_switch.MainMenuSwitchInteractor;
+import use_case.main_menu_switch.MainMenuSwitchOutputBoundary;
 import use_case.start_game.StartGameInputBoundary;
 import use_case.start_game.StartGameInteractor;
 import use_case.start_game.StartGameOutputBoundary;
@@ -47,6 +53,8 @@ public class AppBuilder {
     private GameSummaryViewModel gameSummaryViewModel;
     private CreateTeamView createTeamView;
     private CreateTeamViewModel createTeamViewModel;
+    private MainMenuView mainMenuView;
+    private MainMenuViewModel mainMenuViewModel;
 
     public AppBuilder() {
         cardPanel.setLayout(cardLayout);
@@ -73,6 +81,14 @@ public class AppBuilder {
         return this;
     }
 
+    public AppBuilder addMainMenuView() {
+        mainMenuViewModel = new MainMenuViewModel();
+        mainMenuView = new MainMenuView(mainMenuViewModel);
+        cardPanel.add(mainMenuView, MainMenuViewModel.VIEW_NAME);
+        return this;
+    }
+
+    // ad your use case here >:)
     public AppBuilder addLoadQuestionUseCase() {
         final LoadQuestionOutputBoundary loadQuestionOutputBoundary = new LoadQuestionPresenter(viewManagerModel, gameRunningViewModel);
         final LoadQuestionInputBoundary loadQuestionInteractor = new LoadQuestionInteractor(dataAccessObject, loadQuestionOutputBoundary);
@@ -103,6 +119,16 @@ public class AppBuilder {
         return this;
     }
 
+    public AppBuilder addMainMenuSwitchUseCase() {
+        final MainMenuSwitchOutputBoundary mainMenuSwitchOutputBoundary = new MainMenuSwitchPresenter(createTeamViewModel, viewManagerModel);
+        final MainMenuSwitchInputBoundary mainMenuSwitchInteractor = new MainMenuSwitchInteractor(mainMenuSwitchOutputBoundary);
+
+        MainMenuSwitchController mainMenuSwitchController = new MainMenuSwitchController(mainMenuSwitchInteractor);
+        mainMenuView.setMainMenuSwitchController(mainMenuSwitchController);
+
+        return this;
+    }
+
     public JFrame build() {
         final JFrame application = new JFrame("Family Feud");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -111,7 +137,7 @@ public class AppBuilder {
 
         application.add(cardPanel);
 
-        viewManagerModel.setState(CreateTeamViewModel.VIEW_NAME);
+        viewManagerModel.setState(MainMenuViewModel.VIEW_NAME);
         viewManagerModel.notifyViewChanged();
 
         return application;
