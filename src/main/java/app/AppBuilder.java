@@ -30,10 +30,7 @@ import use_case.main_menu_switch.MainMenuSwitchOutputBoundary;
 import use_case.start_game.StartGameInputBoundary;
 import use_case.start_game.StartGameInteractor;
 import use_case.start_game.StartGameOutputBoundary;
-import view.CreateTeamView;
-import view.GameRunningView;
-import view.GameSummaryView;
-import view.ViewManager;
+import view.*;
 
 import javax.swing.*;
 import java.awt.*;
