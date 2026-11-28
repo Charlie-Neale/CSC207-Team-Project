@@ -10,6 +10,8 @@ public class Main {
                 .addLoadQuestionUseCase()
                 .addCreateTeamView()
                 .addStartGameUseCase()
+                .addMainMenuView()
+                .addMainMenuSwitchUseCase()
                 .build();
 
         application.setLocationRelativeTo(null);

@@ -7,7 +7,7 @@ import use_case.start_game.StartGameInputData;
 public class MainMenuSwitchController {
     private final MainMenuSwitchInputBoundary mainMenuSwitchUseCaseInteractor;
 
-    MainMenuSwitchController(MainMenuSwitchInputBoundary mainMenuSwitchUseCaseInteractor){
+    public MainMenuSwitchController(MainMenuSwitchInputBoundary mainMenuSwitchUseCaseInteractor){
         this.mainMenuSwitchUseCaseInteractor = mainMenuSwitchUseCaseInteractor;
     }
 

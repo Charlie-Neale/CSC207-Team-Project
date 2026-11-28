@@ -13,7 +13,7 @@ public class MainMenuSwitchPresenter implements MainMenuSwitchOutputBoundary {
     private final CreateTeamViewModel createTeamViewModel;
     private final ViewManagerModel viewManagerModel;
 
-    MainMenuSwitchPresenter(CreateTeamViewModel createTeamViewModel, ViewManagerModel viewManagerModel) {
+    public MainMenuSwitchPresenter(CreateTeamViewModel createTeamViewModel, ViewManagerModel viewManagerModel) {
         this.createTeamViewModel = createTeamViewModel;
         this.viewManagerModel = viewManagerModel;
     }
