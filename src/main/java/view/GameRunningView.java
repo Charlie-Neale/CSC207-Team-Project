@@ -4,6 +4,8 @@ import interface_adapter.game_running.GameRunningState;
 import interface_adapter.game_running.GameRunningViewModel;
 import interface_adapter.game_running.GameRunningViewModelListener;
 import interface_adapter.game_running.LoadQuestionController;
+import interface_adapter.game_running.QuestionInputController;
+import interface_adapter.game_running.LogInputController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +14,8 @@ public class GameRunningView extends JPanel implements GameRunningViewModelListe
 
     private final GameRunningViewModel gameRunningViewModel;
     private LoadQuestionController loadQuestionController = null;
+    private QuestionInputController questionInputController = null;
+    private LogInputController logInputController = null;
 
     private final JLabel questionLabel = new JLabel("[Question Box]");
     private final JLabel[] answerLabels = new JLabel[8];
@@ -58,9 +62,18 @@ public class GameRunningView extends JPanel implements GameRunningViewModelListe
         answers.add(Box.createRigidArea(new Dimension(200, 0))); // gap separating answers
         answers.add(answersRight);
 
+        //SUBMIT SON
         final JPanel inputPanel = new JPanel();
         JButton submitAnswerButton = new JButton("Submit");
         inputPanel.add(answerInput);
+        submitAnswerButton.addActionListener(
+                evt -> {
+                    this.questionInputController.execute(this.answerInput.getText());
+                    if (this.gameRunningViewModel.getState().getQuestionInputError() == null) {
+                        //TODO this.logInputController.execute();
+                    }
+                }
+        );
         inputPanel.add(submitAnswerButton);
 
         final JPanel loadQuestionButtonPanel = new JPanel();
@@ -97,5 +110,13 @@ public class GameRunningView extends JPanel implements GameRunningViewModelListe
 
     public void setLoadQuestionController(LoadQuestionController loadQuestionController) {
         this.loadQuestionController = loadQuestionController;
+    }
+
+    public void setQuestionInputController(QuestionInputController questionInputController) {
+        this.questionInputController = questionInputController;
+    }
+
+    public void setLogInputController(LogInputController logInputController) {
+        this.logInputController = logInputController;
     }
 }

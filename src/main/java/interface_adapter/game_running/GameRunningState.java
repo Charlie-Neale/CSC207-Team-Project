@@ -7,6 +7,7 @@ public class GameRunningState {
     private String questionText = "";
     private int answerCount = 0;
     private String loadQuestionError = null;
+    private String questionInputError = null;
     private String team1Name = "";
     private String team2Name = "";
 
@@ -34,6 +35,10 @@ public class GameRunningState {
         this.loadQuestionError = loadQuestionError;
     }
 
+    public String getQuestionInputError() {return questionInputError;}
+
+    public void setQuestionInputError(String questionInputError) {this.questionInputError = questionInputError;}
+  
     public String getTeam1Name() { return team1Name; }
 
     public String getTeam2Name() { return team2Name; }

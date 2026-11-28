@@ -1,15 +1,17 @@
 package data_access;
 
 import entity.Answer;
+import entity.Board;
 import entity.Question;
 import entity.Team;
 import use_case.load_question.LoadQuestionDataAccessInterface;
+import use_case.question_input.QuestionInputDataAccessInterface;
 import use_case.start_game.StartGameDataAccessInterface;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataAccessObject implements LoadQuestionDataAccessInterface, StartGameDataAccessInterface {
+public class DataAccessObject implements LoadQuestionDataAccessInterface, StartGameDataAccessInterface, QuestionInputDataAccessInterface {
 
     // TEMPORARY IMPLEMENTATION FOR TESTING PURPOSES
     @Override
@@ -38,5 +40,9 @@ public class DataAccessObject implements LoadQuestionDataAccessInterface, StartG
     @Override
     public Team getTeam(String teamName){
         return new Team("TEMP.");
+    }
+
+    public Board getCurrentBoard() {
+        return null;
     }
 }
