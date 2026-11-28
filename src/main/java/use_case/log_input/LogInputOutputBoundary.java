@@ -6,9 +6,8 @@ package use_case.log_input;
 public interface LogInputOutputBoundary {
     /**
      * Prepares the success view for the Log Input Use Case.
-     * @param outputData the output data
      */
-    void prepareSuccessView(LogInputOutputData outputData);
+    void prepareSuccessView();
 
     /**
      * Prepares the failure view for the Log Input Use Case.
