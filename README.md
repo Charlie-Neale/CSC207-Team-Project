@@ -147,7 +147,7 @@ ii. The teams score remains unchanged
 |-------------|--------------|
 | Charlie Neale | Guess Input |
 | Caleb Gawthroupe | Start a New Game |
-| Kevin Liu | Use Case |
+| Kevin Liu | Saving/display team score|
 | Jacob Chislett | Display a new question |
 | Eric Wu | Add and store questions |
 ---
